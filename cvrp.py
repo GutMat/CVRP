@@ -104,7 +104,7 @@ def penalty_capacity(chromosome):
         index_cap = 0
         overloads = 0
         
-        for i in range(0,len(trucks)+1):
+        for i in range(0,len(trucks)):
             init = 0
             capacity_list.append(init)
             
@@ -222,8 +222,10 @@ def VRP(k):
                                   len(cities), lambda x : decodeVRP(x), lambda y: fitnessVRP(y))
     
     def first_part_GA(k):
-        best_solution = 999999999999
-        tmp_genotype = None
+# =============================================================================
+#         best_solution = 999999999999
+#         tmp_genotype = None
+# =============================================================================
         cont  = 0
         print ("---------------------------------------------------------Executing FIRST PART: VRP --------------------------------------------------------- \n")
         print("Capacity of trucks = ",capacity_trucks)
@@ -231,16 +233,21 @@ def VRP(k):
         print("")
         tiempo_inicial_t2 = time()
         while cont <= k: 
-            genotype, fitness = genetic_algorithm_t(VRP_PROBLEM, 2, min, 200, 100, 0.8, 0.05)
-            if fitness < best_solution:
-                best_solution = fitness
-                tmp_genotype = genotype
+            genetic_algorithm_t(VRP_PROBLEM, 2, min, 200, 100, 0.8, 0.05)
+# =============================================================================
+#             genotype, fitness = genetic_algorithm_t(VRP_PROBLEM, 2, min, 200, 100, 0.8, 0.05)
+#             if fitness < best_solution:
+#                 best_solution = fitness
+#                 tmp_genotype = genotype
+# =============================================================================
             cont+=1
         tiempo_final_t2 = time()
         print("\n") 
         print("Total time: ",(tiempo_final_t2 - tiempo_inicial_t2)," secs.\n")
-        print('Best solution', best_solution)
-        print('Genotype', tmp_genotype)
+# =============================================================================
+#         print('Best solution', best_solution)
+#         print('Genotype', tmp_genotype)
+# =============================================================================
         
     first_part_GA(k)
 
@@ -274,8 +281,8 @@ distances = {0:dist_bialystok,1:dist_bielsko_biala,2:dist_chrzanow,3:dist_gdansk
              12:dist_lodz,13:dist_malbork,14:dist_nowy_targ,15:dist_olsztyn}
 
 
-capacity_trucks = 60
-trucks = ['truck_1','truck_2', 'truck_3','truck_4','truck_5']
+capacity_trucks = 1000
+trucks = ['truck_1','truck_2', 'truck_3','truck_4','truck_5','truck']
 num_trucks = len(trucks)
 frontier = "---------"
 
